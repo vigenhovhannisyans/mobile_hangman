@@ -1,6 +1,8 @@
 .options{
     .go-back{
-        transform: translate(-172px, -414px);
+        left: 0;
+        top: 0;
+        transform: translate(-51px, -247px);
         position: absolute;
         width: max-content;
         color: #ffffffdb;
@@ -13,6 +15,75 @@
         .left{
             width: 10px;
             filter: contrast(1) invert(1);
+        }
+    }
+    .options-block{
+        .choose{
+            text-align: center;
+            display: block;
+            color: white;
+            font-size: 34px;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-bottom: 40px;
+        }
+        .continue{
+                border: none;
+                background: #00273b;
+                background: linear-gradient(90deg, #00273b 0%, #002f54 47%, #002774 100%);
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, 340%);
+                z-index: 99999;
+                width: 220px;
+                height: 40px;
+                border-radius: 5px;
+                font-size: 31px;
+                font-weight: 700;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 9px;
+                text-decoration: none;
+                &:hover{
+                    cursor: pointer;
+                }
+        }
+        .part{
+            .part-title{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .title{
+                    display: block;
+                    margin-right: 25px;
+                    color: white;
+                    font-size: 25px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                }
+                .shadow{
+                    display: block;
+                    width: 100px;
+                    background-color: gray;
+                    border-radius: 25px;
+                    &.active-shadow{
+                        background-color: #0ec60e;
+                    }
+                    .circle{
+                        display: block;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        background-color: white;
+                        transition: all .5s;
+                        &.active-circle{
+                            transform: translateX(50px);
+                        }
+                    }
+                }
+            }
         }
     }
 }
