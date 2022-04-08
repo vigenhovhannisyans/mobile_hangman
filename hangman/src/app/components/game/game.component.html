@@ -27,9 +27,9 @@
         </div>
     </div>
     <div class="word">
-        <span *ngFor="let letter of choosed.value | stringToArray" class="letter"><span [ngClass]="{'visible': clickedLetter===letter}" class="letter-1">{{letter}}</span></span>
+        <span *ngFor="let lets of letter" class="letter"><span [ngClass]="{'visible': lets.active }" class="letter-1">{{lets.value}}</span></span>
     </div>
    <div class="letters">
-       <span (click)="clickLetter(letter)" *ngFor="let letter of letters" class="letter">{{letter.value}}</span>
+       <span (click)="clickLetter(letter,letter.active)" *ngFor="let letter of letters" class="letter" [ngClass]="{'correct': letter.active===true, 'wrong': letter.active===false, 'default': letter.active===undefined}">{{letter.value}}</span>
    </div>
 </div>

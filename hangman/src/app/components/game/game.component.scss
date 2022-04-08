@@ -156,12 +156,26 @@
             display: block;
             width: 40px;
             height: 40px;
-            background-color: white;
             border-radius: 50%;
             color: black;
             font-weight: 700;
             text-align: center;
             font-size: 30px;
+            &.correct{
+                background-color: green;
+                pointer-events: none;
+                opacity: 0.8;
+                color: white;
+            }
+            &.wrong{
+                background-color: red;
+                pointer-events: none;
+                opacity: 0.8;
+                color: white;
+            }
+            &.default{
+                background-color: white;
+            }
             &:hover{
                 cursor: pointer;
             }
@@ -190,11 +204,13 @@
             flex-direction: column-reverse;
             text-align: center;
             font-weight: 700;
+
             .letter-1{
                 opacity: 0;
                 &.visible{
                     opacity: 1;
                 }
+
             }
         }
     }

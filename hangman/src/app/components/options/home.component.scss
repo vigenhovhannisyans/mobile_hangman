@@ -1,0 +1,31 @@
+.home-content{
+    background-color: black;
+    width: 387px;
+    height: 822px;  
+    position: relative;
+    transform: translate(-2px, 13px);
+    border-radius: 0 0 40px 44px;
+    .start-btn{
+        border: none;
+        background: #00273b;
+        background: linear-gradient(90deg, #00273b 0%, #002f54 47%, #002774 100%);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99999;
+        width: 220px;
+        height: 40px;
+        border-radius: 5px;
+        font-size: 31px;
+        font-weight: 700;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 9px;
+        text-decoration: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
