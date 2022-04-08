@@ -1,0 +1,22 @@
+.phone{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 442px;
+    .phone-content{
+        position: relative;
+    .phone-img{
+        width: 100%;
+        background: black;
+        border-radius: 68px;
+    }
+    .router-outlet{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9;
+    }
+    }
+}

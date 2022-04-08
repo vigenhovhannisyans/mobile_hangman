@@ -1,0 +1,18 @@
+.options{
+    .go-back{
+        transform: translate(-172px, -414px);
+        position: absolute;
+        width: max-content;
+        color: #ffffffdb;
+        font-size: 14px;
+        font-weight: 600;
+            text-decoration: none;
+            &:hover{
+                cursor: pointer;
+        }
+        .left{
+            width: 10px;
+            filter: contrast(1) invert(1);
+        }
+    }
+}
