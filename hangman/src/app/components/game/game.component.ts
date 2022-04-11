@@ -8,6 +8,7 @@ import { Letter, Word } from 'src/app/models';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+  showParts = 0;
   letters: Letter[] = [
     {id: 1, value: 'A', active: undefined},
     {id: 2, value: 'B', active: undefined},
@@ -29,7 +30,7 @@ export class GameComponent implements OnInit {
     {id: 18, value: 'R', active: undefined},
     {id: 19, value: 'S', active: undefined},
     {id: 20, value: 'T', active: undefined},
-    {id: 21, value: 'Y', active: undefined},
+    {id: 21, value: 'U', active: undefined},
     {id: 22, value: 'V', active: undefined},
     {id: 23, value: 'W', active: undefined},
     {id: 24, value: 'X', active: undefined},
@@ -37,11 +38,8 @@ export class GameComponent implements OnInit {
     {id: 26, value: 'Z', active: undefined},
   ]
   cities: Word[] = [
-    {id: 1, value: 'V', hint: 'The name', category: 'Country'},
-    {id: 2, value: 'VIV', hint: 'The name', category: 'Country'},
-    {id: 3, value: 'VIGV', hint: 'The name', category: 'Country'},
-    {id: 4, value: 'VIGEV', hint: 'The name', category: 'Country'},
-    {id: 5, value: 'VIGENV', hint: 'The name', category: 'Country'},
+    {id: 1, value: 'BARCELONA', hint: 'THE CITY IN SPAIN', category: 'Country'},
+    {id: 2, value: 'GYUMRI', hint: 'THE CITY IN ARMENIA', category: 'Country'},
   ]
   selectedOption!: Word[]
   choosed!: Word;
@@ -77,19 +75,33 @@ export class GameComponent implements OnInit {
             for(let lets of this.letter){
               if(this.clickedLetter === lets.value){
                 lets.active = true
-z
+                for(let arr of this.letters){
+                  if(arr.value === this.clickedLetter){
+                    arr.active = true
+                  }
+                }
               }
         }
       }
+      if(this.clickedLetter !== this.choosed.value[i]){
+        for(let arr of this.letters){
+          if(arr.value === this.clickedLetter && arr.active === undefined){
+            arr.active = false
+          }
+        }
+
+      }
+    }
+    if(!this.choosed.value.includes(this.clickedLetter)){
+      this.showParts++
+      console.log(true)
     }
   }
 
   getRandomQuestion(param: Word[]): Word | any {
     const rand = Math.floor(Math.random() * param.length)+1;
-    console.log(rand);
     for (let arr of param){
       if(arr.id === rand){
-        console.log(arr);
         return arr
       }
     }

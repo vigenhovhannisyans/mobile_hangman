@@ -1,19 +1,29 @@
-.game{
-    .hangman{
+.game {
+    .hint {
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 20px;
+        white-space: nowrap;
+        word-break: break-all;
+        transform: translate(-50%, -367px);
+    }
+    .hangman {
         transform: translate(-97px, -142px);
-        .boards{
-            .floor{
+        .boards {
+            .floor {
                 width: 130px;
                 height: 10px;
                 background-color: white;
             }
-            .vertical{
+            .vertical {
                 width: 10px;
                 height: 353px;
                 background-color: white;
                 margin: auto;
             }
-            .horizontal{
+            .horizontal {
                 height: 10px;
                 width: 300px;
                 top: -2px;
@@ -22,7 +32,7 @@
                 background-color: white;
                 margin: auto;
             }
-            .plane{
+            .plane {
                 height: 10px;
                 width: 80px;
                 top: -2px;
@@ -32,7 +42,7 @@
                 margin: auto;
                 transform: rotate(-45deg) translate(-8px, 33px);
             }
-            .rope{
+            .rope {
                 height: 90px;
                 width: 10px;
                 background-color: white;
@@ -42,56 +52,55 @@
                 transform: translateX(78px);
                 display: none;
             }
-            .head{
+            .head {
                 position: absolute;
                 top: 0;
                 right: 0;
                 transform: translate(102px, 70px);
                 display: none;
-                .rope-1{
+                .rope-1 {
                     width: 57px;
                     height: 12px;
                     background-color: white;
                     border-radius: 50px;
                     transform: translate(0px, 67px);
                 }
-            .head-cont{
-                width: 50px;
-                height: 50px;
-                border: 4px solid white;
-                border-radius: 50%;
-                position: relative;
-                background: #0088aa;
-                transform: rotate(20deg);
-                .eyes{
-                    display: flex;
-                    justify-content: space-around;
-                    transform: translateY(10px);
-                .eye{
-                    width: 15px;
-                    height: 15px;
-                    background-color: white;
+                .head-cont {
+                    width: 50px;
+                    height: 50px;
+                    border: 4px solid white;
                     border-radius: 50%;
+                    position: relative;
+                    background: #0088aa;
+                    transform: rotate(20deg);
+                    .eyes {
+                        display: flex;
+                        justify-content: space-around;
+                        transform: translateY(10px);
+                        .eye {
+                            width: 15px;
+                            height: 15px;
+                            background-color: white;
+                            border-radius: 50%;
+                        }
+                        .eye-1 {
+                            width: 15px;
+                            height: 15px;
+                            background-color: white;
+                            border-radius: 50%;
+                        }
+                    }
+                    .mouth {
+                        width: 20px;
+                        height: 4px;
+                        background-color: white;
+                        transform: translate(15px, 20px);
+                        border-radius: 10px;
+                    }
                 }
-                .eye-1{
-                    width: 15px;
-                    height: 15px;
-                    background-color: white;
-                    border-radius: 50%;
-                }
-                }
-                .mouth{
-                    width: 20px;
-                    height: 4px;
-                    background-color: white;
-                    transform: translate(15px, 20px);
-                    border-radius: 10px;
-                }
-                
             }
-            }
-            .body{
-                .body-part{
+            .body {
+                .body-part {
                     width: 10px;
                     height: 144px;
                     background-color: white;
@@ -101,7 +110,7 @@
                     transform: translate(76px, 145px);
                     display: none;
                 }
-                .hand{
+                .hand {
                     width: 7px;
                     height: 62px;
                     background-color: white;
@@ -111,7 +120,7 @@
                     transform: translate(51px, 145px) rotate(45deg);
                     display: none;
                 }
-                .hand-1{
+                .hand-1 {
                     width: 7px;
                     height: 62px;
                     background-color: white;
@@ -121,7 +130,7 @@
                     transform: translate(97px, 145px) rotate(-45deg);
                     display: none;
                 }
-                .leg{
+                .leg {
                     width: 7px;
                     height: 62px;
                     background-color: white;
@@ -131,7 +140,7 @@
                     transform: translate(97px, 274px) rotate(-45deg);
                     display: none;
                 }
-                .leg-1{
+                .leg-1 {
                     width: 7px;
                     height: 62px;
                     background-color: white;
@@ -144,14 +153,14 @@
             }
         }
     }
-    .letters{
+    .letters {
         display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    width: 400px;
-    left: 0;
-    transform: translateX(-126px);
-        .letter{
+        flex-wrap: wrap;
+        position: absolute;
+        width: 400px;
+        left: 0;
+        transform: translateX(-126px);
+        .letter {
             margin: 4px;
             display: block;
             width: 40px;
@@ -161,38 +170,38 @@
             font-weight: 700;
             text-align: center;
             font-size: 30px;
-            &.correct{
+            &.correct {
                 background-color: green;
                 pointer-events: none;
                 opacity: 0.8;
                 color: white;
             }
-            &.wrong{
+            &.wrong {
                 background-color: red;
                 pointer-events: none;
                 opacity: 0.8;
                 color: white;
             }
-            &.default{
+            &.default {
                 background-color: white;
             }
-            &:hover{
+            &:hover {
                 cursor: pointer;
             }
         }
     }
-    .displayed-part{
+    .displayed-part {
         display: block !important;
     }
-    .word{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, 3000%);
-    display: flex;
-    justify-content: center;
-    width: 350px;
-        .letter{
+    .word {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 3000%);
+        display: flex;
+        justify-content: center;
+        width: 350px;
+        .letter {
             display: block;
             width: 30px;
             height: 4px;
@@ -204,13 +213,14 @@
             flex-direction: column-reverse;
             text-align: center;
             font-weight: 700;
-
-            .letter-1{
+            &:last-child {
+                margin: 0;
+            }
+            .letter-1 {
                 opacity: 0;
-                &.visible{
+                &.visible {
                     opacity: 1;
                 }
-
             }
         }
     }

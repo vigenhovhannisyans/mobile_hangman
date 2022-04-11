@@ -1,27 +1,28 @@
 <div class="game">
+    <span class="hint">{{choosed.hint}}</span>
     <div class="hangman">
         <div class="boards">
             <div class="vertical"></div>
             <div class="horizontal"></div>
             <div class="plane"></div>
-            <div class="rope"></div>
-            <div class="head">
+            <div [ngClass]="{'displayed-part': showParts>0}" class="rope"></div>
+            <div [ngClass]="{'displayed-part': showParts>1}" class="head">
                 <div class="rope-1"></div>
                 <div class="head-cont">
-                <div class="eyes">
-                <div class="eye"></div>
-                <div class="eye-1"></div>
-            </div>
-            <div class="mouth"></div>
+                    <div class="eyes">
+                        <div class="eye"></div>
+                        <div class="eye-1"></div>
+                    </div>
+                    <div class="mouth"></div>
 
-            </div>
+                </div>
             </div>
             <div class="body">
-                <div class="body-part"></div>
-                <div class="hand"></div>
-                <div class="hand-1"></div>
-                <div class="leg"></div>
-                <div class="leg-1"></div>
+                <div [ngClass]="{'displayed-part': showParts > 2}" class="body-part"></div>
+                <div [ngClass]="{'displayed-part': showParts > 3 }" class="hand"></div>
+                <div [ngClass]="{'displayed-part': showParts > 4}" class="hand-1"></div>
+                <div [ngClass]="{'displayed-part': showParts > 5}" class="leg"></div>
+                <div [ngClass]="{'displayed-part': showParts > 6}" class="leg-1"></div>
             </div>
             <div class="floor"></div>
         </div>
@@ -29,7 +30,7 @@
     <div class="word">
         <span *ngFor="let lets of letter" class="letter"><span [ngClass]="{'visible': lets.active }" class="letter-1">{{lets.value}}</span></span>
     </div>
-   <div class="letters">
-       <span (click)="clickLetter(letter,letter.active)" *ngFor="let letter of letters" class="letter" [ngClass]="{'correct': letter.active===true, 'wrong': letter.active===false, 'default': letter.active===undefined}">{{letter.value}}</span>
-   </div>
+    <div class="letters">
+        <span (click)="clickLetter(letter)" *ngFor="let letter of letters" class="letter" [ngClass]="{'correct': letter.active===true, 'wrong': letter.active===false, 'default': letter.active===undefined}">{{letter.value}}</span>
+    </div>
 </div>
