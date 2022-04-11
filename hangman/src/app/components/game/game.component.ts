@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { DialogPosition, MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Letter, Word } from 'src/app/models';
+import { ActionModalComponent } from '../modal/action-modal/action-modal.component';
 
 @Component({
   selector: 'app-game',
@@ -9,6 +11,7 @@ import { Letter, Word } from 'src/app/models';
 })
 export class GameComponent implements OnInit {
   showParts = 0;
+  id = 0;
   letters: Letter[] = [
     {id: 1, value: 'A', active: undefined},
     {id: 2, value: 'B', active: undefined},
@@ -38,37 +41,44 @@ export class GameComponent implements OnInit {
     {id: 26, value: 'Z', active: undefined},
   ]
   cities: Word[] = [
-    {id: 1, value: 'BARCELONA', hint: 'THE CITY IN SPAIN', category: 'Country'},
-    {id: 2, value: 'GYUMRI', hint: 'THE CITY IN ARMENIA', category: 'Country'},
+    {id: 1, value: 'MADRID', hint: 'What is the capital of Spain', category: 'Country',},
+    {id: 2, value: 'ALGIRES', hint: 'What is the capital of Algeria', category: 'Country'},
+    {id: 3, value: 'LUANDA', hint: 'What is the capital of Angola', category: 'Country'},
+    {id: 4, value: 'YEREVAN', hint: 'What is the capital of Armenia', category: 'Country'},
+    {id: 5, value: 'CANBERRA', hint: 'What is the capital of Australia', category: 'Country'},
+    {id: 6, value: 'VIENNA', hint: 'What is the capital of Austria', category: 'Country'},
+    {id: 7, value: 'BAKU', hint: 'What is the capital of Bahamas', category: 'Country'},
+    {id: 8, value: 'NASSAU', hint: 'What is the capital of Bahamas', category: 'Country'},
+  ]
+  cars: Word[] = [
+    {id: 1, value: 'MERCEDES', hint: 'Best or nothing', category: 'Cars'},
   ]
   selectedOption!: Word[]
   choosed!: Word;
   clickedLetter!: string
   visibleLetter = false;
+  activeParam!: string;
+  answerLetterCount = 0
   letter: Letter[] = []
   constructor(
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe((res)=>{
-      switch(res.option.toLowerCase()){
-        case 'cities':
-          let id = 0;
-          this.selectedOption = this.cities
-          this.choosed = this.getRandomQuestion(this.selectedOption)
-          for(let arr of this.choosed.value.split('')){
-            ++id
-            this.letter.push(
-              {id: id, value: arr, active: false}
-            )
-          }
-          break
-      }
-      console.log(res);
+    this.activatedRoute.queryParams.subscribe((param)=>{
+      localStorage.setItem('choosedParam',param.option)
+      this.activeParam = JSON.stringify(localStorage.getItem('choosedParam')).split('"')[1]
     })
+    this.fetch()
+
   }
+
   clickLetter(value: Letter): void{
+    if(this.showParts===6){
+      this.openActionDialog();
+    }
     this.clickedLetter = value.value
     for(let i = 0; i< this.choosed.value.length; i++){
       if(this.clickedLetter === this.choosed.value[i]){
@@ -88,14 +98,20 @@ export class GameComponent implements OnInit {
           if(arr.value === this.clickedLetter && arr.active === undefined){
             arr.active = false
           }
+
         }
 
       }
     }
     if(!this.choosed.value.includes(this.clickedLetter)){
       this.showParts++
-      console.log(true)
     }
+    if(this.answerLetterCount===this.choosed.value.length){
+      console.log(this.answerLetterCount);
+    }
+    if(this.checkIsTrueValue(this.letter)){
+      this.openActionDialog('win')
+  }
   }
 
   getRandomQuestion(param: Word[]): Word | any {
@@ -107,5 +123,61 @@ export class GameComponent implements OnInit {
     }
 
   }
+  openActionDialog(data?: string): void{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.panelClass = 'lose-modal'
+    dialogConfig.data = data
+    const dialogRef = this.dialog.open(ActionModalComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if(result.data==='game'){
+        this.redirectTo('/game',this.activeParam)
+      }
+    });
+  }
 
+  fetch(): void{
+    this.activatedRoute.queryParams.subscribe((res)=>{
+      switch(res.option.toLowerCase()){
+        case 'cities':
+          this.id = 0;
+          this.selectedOption = this.cities
+          this.choosed = this.getRandomQuestion(this.selectedOption)
+          for(let arr of this.choosed.value.split('')){
+            ++this.id
+            this.letter.push(
+              {id: this.id, value: arr, active: false}
+            )
+          }
+          break;
+          case 'cars':
+            this.selectedOption = this.cars
+            this.choosed = this.getRandomQuestion(this.selectedOption)
+            for(let arr of this.choosed.value.split('')){
+              ++this.id
+              this.letter.push(
+                {id: this.id, value: arr, active: false}
+              )
+            }
+            break;
+
+      }
+    })
+  }
+
+  redirectTo(uri:string,param: string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri],{queryParams: {option:param}}));
+ }
+
+
+ checkIsTrueValue(arr:Letter[]): any{
+  let result = arr.every((i) => {
+    return i.active === true
+  })
+  return result
+ }
 }

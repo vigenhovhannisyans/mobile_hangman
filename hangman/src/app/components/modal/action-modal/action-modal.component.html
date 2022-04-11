@@ -1,0 +1,26 @@
+<div *ngIf="!winOrLose;else winTemplate" class="lose">
+    <div class="lose-content">
+    <span class="isWin">You Lose</span>
+    <div class="options">
+        <div mat-dialog-close (click)="action('home')" class="item">
+            <span class="title">Home</span>
+            <img src="../../../../assets/images/home.svg" alt="">
+        </div>
+        <div mat-dialog-close (click)="action('options')" class="item">
+            <span class="title">Options</span>
+            <img src="../../../../assets/images/options.svg" alt="">
+        </div>
+        <div (click)="action('retry')" mat-dialog-close class="item">
+            <span class="title">Retry</span>
+            <img src="../../../../assets/images/retry.svg" alt="">
+        </div>
+    </div>
+</div>
+</div>
+<ng-template #winTemplate>
+    <div class="lose">
+        <div class="lose-content">
+        <span class="isWin">You Win</span>
+    </div>
+    </div>
+</ng-template>

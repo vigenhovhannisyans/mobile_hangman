@@ -8,6 +8,8 @@
         white-space: nowrap;
         word-break: break-all;
         transform: translate(-50%, -367px);
+        font-family: 'Rubik Wet Paint', cursive !important;
+
     }
     .hangman {
         transform: translate(-97px, -142px);
@@ -160,6 +162,7 @@
         width: 400px;
         left: 0;
         transform: translateX(-126px);
+        font-family: 'Rubik Wet Paint', cursive !important;
         .letter {
             margin: 4px;
             display: block;
@@ -167,7 +170,6 @@
             height: 40px;
             border-radius: 50%;
             color: black;
-            font-weight: 700;
             text-align: center;
             font-size: 30px;
             &.correct {
@@ -202,6 +204,7 @@
         justify-content: center;
         width: 350px;
         .letter {
+            font-family: 'Rubik Wet Paint', cursive !important;
             display: block;
             width: 30px;
             height: 4px;
@@ -212,7 +215,6 @@
             display: flex;
             flex-direction: column-reverse;
             text-align: center;
-            font-weight: 700;
             &:last-child {
                 margin: 0;
             }
