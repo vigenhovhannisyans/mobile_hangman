@@ -1,0 +1,22 @@
+<div class="action">
+    <div class="content">
+    <div class="options">
+        <div mat-dialog-close (click)="action('home')" class="item">
+            <span class="title">Home</span>
+            <img src="../../../../assets/images/home.svg" alt="">
+        </div>
+        <div mat-dialog-close (click)="action('options')" class="item">
+            <span class="title">Options</span>
+            <img src="../../../../assets/images/options.svg" alt="">
+        </div>
+        <div (click)="action('retry')" class="item">
+            <span class="title">Retry</span>
+            <img src="../../../../assets/images/retry.svg" alt="">
+        </div>
+        <div [ngClass]="{'disable-hint': disableHint}" (click)="showLetter()" class="item hint-item">
+            <span class="title">Hint</span>
+            <img src="../../../../assets/images/hint.svg" alt="">
+        </div>
+    </div>
+</div>
+</div>

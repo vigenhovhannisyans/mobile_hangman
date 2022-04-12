@@ -25,21 +25,6 @@ export class ActionModalComponent implements OnInit {
       this.winOrLose = false
     }
   }
-  action(event: string): void{
-    switch(event){
-      case 'home':
-      this.router.navigate([''])
-      this.dialogRef.close({ data: 'home' });
-      break;
-      case 'options':
-      this.router.navigate(['/options'])
-      this.dialogRef.close({ data: 'option' });
-      break;
-      case 'retry':
-      this.dialogRef.close({ data: 'game' });
-      break;
-    }
-  }
 
 }
 

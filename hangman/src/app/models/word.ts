@@ -3,4 +3,5 @@ export interface Word {
     value: string;
     hint: string;
     category: string;
+    photo?: string;
 }

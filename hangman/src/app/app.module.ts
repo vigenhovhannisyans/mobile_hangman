@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { GameComponent } from './components/game/game.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActionModalComponent } from './components/modal/action-modal/action-modal.component';
+import { ActionComponent } from './includes/action/action.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ActionModalComponent } from './components/modal/action-modal/action-mod
     GameComponent,
     StringToArrayPipe,
     ActionModalComponent,
+    ActionComponent,
   ],
   imports: [
     BrowserModule,

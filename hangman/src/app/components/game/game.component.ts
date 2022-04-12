@@ -12,6 +12,8 @@ import { ActionModalComponent } from '../modal/action-modal/action-modal.compone
 export class GameComponent implements OnInit {
   showParts = 0;
   id = 0;
+  disableHint!: boolean
+  clickedHint = 0
   letters: Letter[] = [
     {id: 1, value: 'A', active: undefined},
     {id: 2, value: 'B', active: undefined},
@@ -51,7 +53,16 @@ export class GameComponent implements OnInit {
     {id: 8, value: 'NASSAU', hint: 'What is the capital of Bahamas', category: 'Country'},
   ]
   cars: Word[] = [
-    {id: 1, value: 'MERCEDES', hint: 'Best or nothing', category: 'Cars'},
+    {id: 1, value: 'MERCEDES', hint: 'The car that were made in Germany', category: 'Cars', photo:''},
+    // {id: 2, value: 'VOLKSWAGEN', hint: 'The car that were made in Germany', category: 'Cars', photo:''},
+    // {id: 3, value: 'FERRARI', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
+    // {id: 4, value: 'FIAT', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
+    // {id: 5, value: 'MASERATI', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
+    // {id: 6, value: 'ALEKO', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
+    // {id: 7, value: 'DRAGON', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
+    // {id: 8, value: 'SEAZ', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
+    // {id: 9, value: 'FORD', hint: 'The car that were made in USA', category: 'Cars', photo:''},
+    // {id: 10, value: 'JEEP', hint: 'The car that were made in USA', category: 'Cars', photo:''},
   ]
   selectedOption!: Word[]
   choosed!: Word;
@@ -76,9 +87,6 @@ export class GameComponent implements OnInit {
   }
 
   clickLetter(value: Letter): void{
-    if(this.showParts===6){
-      this.openActionDialog();
-    }
     this.clickedLetter = value.value
     for(let i = 0; i< this.choosed.value.length; i++){
       if(this.clickedLetter === this.choosed.value[i]){
@@ -111,6 +119,9 @@ export class GameComponent implements OnInit {
     }
     if(this.checkIsTrueValue(this.letter)){
       this.openActionDialog('win')
+  }
+  if(this.showParts===7){
+    this.openActionDialog();
   }
   }
 
@@ -179,5 +190,36 @@ export class GameComponent implements OnInit {
     return i.active === true
   })
   return result
+ }
+
+ showLetterEmitter(event: boolean): void{
+  this.clickedHint++
+  if(this.clickedHint===3){
+    this.disableHint = true;
+  }
+  const rand = Math.floor(Math.random() * this.letter.length) + 1
+   if(event){
+    for(let arr of this.letter){
+      if(!arr.active){
+        if(arr.id === rand){
+          arr.active = true
+          for(let i = 0; i<this.choosed.value.length; i++){
+            if(arr.value === this.choosed.value[i]){
+              for(let lets of this.letter){
+                if(arr.value === lets.value){
+                  lets.active = true
+                }
+          }
+        }
+        }
+          for(let arrLettter of this.letters){
+              if(arr.value === arrLettter.value){
+                arrLettter.active = true
+              }
+          }
+        }
+      }
+    }
+   }
  }
 }

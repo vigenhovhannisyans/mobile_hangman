@@ -33,4 +33,5 @@
     <div class="letters">
         <span (click)="clickLetter(letter)" *ngFor="let letter of letters" class="letter" [ngClass]="{'correct': letter.active===true, 'wrong': letter.active===false, 'default': letter.active===undefined}">{{letter.value}}</span>
     </div>
+<app-action [disableHint]="disableHint" (showLetterEmmiter)="showLetterEmitter($event)"></app-action>
 </div>
