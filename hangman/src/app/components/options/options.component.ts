@@ -12,7 +12,7 @@ export class OptionsComponent implements OnInit {
   selectedOption = 'Random'
   options: Options[]=[
     {title: 'Cities', selected: false},
-    {title: 'Body parts', selected: false},
+    {title: 'Food', selected: false},
     {title: 'Cars', selected: false},
     {title: 'Random', selected: true},
   ]

@@ -54,15 +54,23 @@ export class GameComponent implements OnInit {
   ]
   cars: Word[] = [
     {id: 1, value: 'MERCEDES', hint: 'The car that were made in Germany', category: 'Cars', photo:''},
-    // {id: 2, value: 'VOLKSWAGEN', hint: 'The car that were made in Germany', category: 'Cars', photo:''},
-    // {id: 3, value: 'FERRARI', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
-    // {id: 4, value: 'FIAT', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
-    // {id: 5, value: 'MASERATI', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
-    // {id: 6, value: 'ALEKO', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
-    // {id: 7, value: 'DRAGON', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
-    // {id: 8, value: 'SEAZ', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
-    // {id: 9, value: 'FORD', hint: 'The car that were made in USA', category: 'Cars', photo:''},
-    // {id: 10, value: 'JEEP', hint: 'The car that were made in USA', category: 'Cars', photo:''},
+    {id: 2, value: 'VOLKSWAGEN', hint: 'The car that were made in Germany', category: 'Cars', photo:''},
+    {id: 3, value: 'FERRARI', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
+    {id: 4, value: 'FIAT', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
+    {id: 5, value: 'MASERATI', hint: 'The car that were made in Italy', category: 'Cars', photo:''},
+    {id: 6, value: 'ALEKO', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
+    {id: 7, value: 'DRAGON', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
+    {id: 8, value: 'SEAZ', hint: 'The car that were made in Russia', category: 'Cars', photo:''},
+    {id: 9, value: 'FORD', hint: 'The car that were made in USA', category: 'Cars', photo:''},
+    {id: 10, value: 'JEEP', hint: 'The car that were made in USA', category: 'Cars', photo:''},
+  ]
+  food: Word[] = [
+    {id: 1, value: 'BROWN', hint: 'What is the rarest M&M color?', category: 'Food', photo:''},
+    {id: 2, value: 'PEPPER', hint: 'What is pericana alcoyana?', category: 'Food', photo:''},
+    {id: 3, value: 'CHINA', hint: 'Which country invented ice cream?', category: 'Food', photo:''},
+    {id: 4, value: 'SOUP', hint: 'What is greissnockerlsuppe?', category: 'Food', photo:''},
+    {id: 5, value: 'PEPPER', hint: 'What is Carolina Ripper?', category: 'Food', photo:''},
+    {id: 6, value: 'RED', hint: 'What color is chili pepper', category: 'Food', photo:''},
   ]
   selectedOption!: Word[]
   choosed!: Word;
@@ -174,6 +182,16 @@ export class GameComponent implements OnInit {
               )
             }
             break;
+          case 'food': 
+          this.selectedOption = this.food
+          this.choosed = this.getRandomQuestion(this.selectedOption)
+          for(let arr of this.choosed.value.split('')){
+            ++this.id
+            this.letter.push(
+              {id: this.id, value: arr, active: false}
+            )
+          }
+          break; 
 
       }
     })
